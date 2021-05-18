@@ -30,7 +30,7 @@ export default class TweetDeck extends Component {
                 </div>
                 <div className="text-center">
                     {this.state.cnt < this.state.total?
-                        <button type="button" className="btn btn-outline-primary w-25" onClick={this.addMore}>See More</button>:
+                        <button type="button" className="btn btn-outline-primary w-25" onClick={this.addMore}>See More Tweets</button>:
                         <a href={"https://twitter.com/search?q=%23"+this.state.hashtag} target="_null" className="btn btn-outline-primary">
                             See on &nbsp;
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="#1DA1F2" width="16" height="16" className="bi bi-twitter" viewBox="0 2 16 16">

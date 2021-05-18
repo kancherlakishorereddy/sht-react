@@ -97,7 +97,7 @@ export default class Tweets extends Component {
                     <TweetDeck tweets={this.state.tweets} hashtag={this.state.hashtag}/>:
                     (
                         this.state.hashtag!==''?
-                        <h4 className="text-center">{this.state.error}</h4>:
+                        <h4 className="text-center">{this.state.error?this.state.error:'Error Encountered, Try again'}</h4>:
                         null
                     )
                 }
