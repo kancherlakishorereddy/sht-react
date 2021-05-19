@@ -55,7 +55,7 @@ export default class Tweets extends Component {
         if(this.state.loading)
             return <Spinner/>
         else
-            return <button type="submit" className="btn btn-primary w-25">Go</button>
+            return <button type="submit" className="btn w-75 btn-primary" style={{maxWidth:"250px"}}>Go</button>
     }
     
     componentDidUpdate(prevProps) {
@@ -75,10 +75,10 @@ export default class Tweets extends Component {
 
     render() {
         return (
-            <div className="container-xl flex-grow-1">
-                <div className="py-4">
+            <div className="container flex-grow-1">
+                <div className="col-12 col-md-8 px-0 py-4 mx-auto">
                     <form id="query-form" onSubmit={this.handleSubmit}>
-                        <div className="w-sm-100 w-75 mx-auto">
+                        <div className="mx-auto">
                             <label className="control-label">Search Twitter:</label>
                             <div className="form-group">
                                 <div className="input-group mb-3">

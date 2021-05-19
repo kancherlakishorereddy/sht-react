@@ -11,7 +11,7 @@ export default function Navbar() {
             </button>
 
             <div className="collapse navbar-collapse" id="navbarColor01">
-                <ul className="navbar-nav ml-auto">
+                <ul className="navbar-nav text-center ml-auto">
                     <li className="nav-item mx-3">
                         <NavLink className="nav-link" to="/trends">Trends</NavLink>
                     </li>

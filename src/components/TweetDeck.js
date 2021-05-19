@@ -7,11 +7,11 @@ export default class TweetDeck extends Component {
         hashtag:this.props.hashtag,
         tweets:this.props.tweets,
         total:this.props.tweets.length,
-        cnt:Math.min(this.props.tweets.length, 24),
+        cnt:Math.min(this.props.tweets.length, 16),
     }
     addMore = ()=>{
         let cnt = this.state.cnt;
-        cnt += 9;
+        cnt += 8;
         this.setState({cnt});
     }
     
@@ -39,14 +39,14 @@ export default class TweetDeck extends Component {
             )
         })
         return (
-            <div>
-                <h4 className="text-center w-75 pb-2 mx-auto" style={{borderBottom:"solid 2px black"}}>#{this.state.hashtag}</h4>
-                <div className="col-12 col-md-8 pt-2 pb-4 mx-auto">
+            <div className="w-100">
+                <h4 className="text-center pb-2 mx-auto" style={{borderBottom:"solid 2px black"}}>#{this.state.hashtag}</h4>
+                <div className="mx-auto">
                     {deck}
                 </div>
-                <div className="text-center">
+                <div className="text-center my-4">
                     {this.state.cnt < this.state.total?
-                        <button type="button" className="btn btn-outline-primary w-25" onClick={this.addMore}>See More Tweets</button>:
+                        <button type="button" className="btn btn-outline-primary" onClick={this.addMore}>See More Tweets</button>:
                         <a href={"https://twitter.com/search?q=%23"+this.state.hashtag} target="_null" className="btn btn-outline-primary">
                             See on &nbsp;
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="#1DA1F2" width="16" height="16" className="bi bi-twitter" viewBox="0 2 16 16">

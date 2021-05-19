@@ -3,11 +3,8 @@ import Spinner from './Spinner'
 
 export default function TweetEmbed({id, status}) {
     useEffect(() => {
-        console.log("using effect on: "+id);
         let el = document.getElementById(id);
         if(status){
-            console.log("script loadwd on: "+id);
-            console.log("loading tweet: "+id);
             window.twttr.widgets.createTweet(id, el,
                 {
                   conversation: 'all',    // or all
