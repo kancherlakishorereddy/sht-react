@@ -5,7 +5,7 @@ export default function Spinner() {
     useEffect(() => {
         let timer = setTimeout(() => {
             setMsg('This is taking longer than expected..');
-        }, 15000);
+        }, 5000);
         return () => clearTimeout(timer);
     }, [])
     return (

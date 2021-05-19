@@ -1,7 +1,6 @@
 import {React, useEffect} from 'react'
-import Spinner from './Spinner'
 
-export default function TweetEmbed({id, status}) {
+export default function TweetEmbed({id, status, finishRender}) {
     useEffect(() => {
         let el = document.getElementById(id);
         if(status){
@@ -10,15 +9,11 @@ export default function TweetEmbed({id, status}) {
                   conversation: 'all',    // or all
                   cards: 'visible',  // or hidden
                   align: "center", // or left or right
-                }).then(()=>{
-                    let ch = el.children;
-                    el.removeChild(ch[0]);
-                });
+                }).then(()=>{finishRender(false)});
         }
-    }, [id, status]);
+    }, [id, status, finishRender]);
     return (
-        <div id = {id} style={{minHeight:"50px"}}>
-            <Spinner/>
+        <div id = {id}>
         </div>
     )
 }

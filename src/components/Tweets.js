@@ -75,7 +75,7 @@ export default class Tweets extends Component {
 
     render() {
         return (
-            <div className="container flex-grow-1">
+            <div className="container">
                 <div className="col-12 col-md-8 px-0 py-4 mx-auto">
                     <form id="query-form" onSubmit={this.handleSubmit}>
                         <div className="mx-auto">
@@ -89,7 +89,7 @@ export default class Tweets extends Component {
                                 </div>
                             </div>
 
-                            <h6 className="text-center my-4"><strong>Enter a HashTag</strong> in the above field and <strong>Hit Go</strong> to see mix of top and recent tweets with the HashTag.</h6>
+                            <h6 className="text-center my-4"><strong>Enter a HashTag</strong> in the above field and <strong>Hit Go</strong> to see recent and top tweets with the HashTag.</h6>
 
                             <div className="d-flex justify-content-center">
                                 {this.getAction()}
