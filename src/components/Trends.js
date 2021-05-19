@@ -18,7 +18,7 @@ export default class Trends extends Component {
 
     handleSubmit = (e)=>{
         e.preventDefault();
-        let region = e.target[0].value;
+        let region = e.target[0].value.trim();
         let curReg = new URLSearchParams(this.props.location.search).get("region")
         if(curReg === region)
             this.getTrends(region);
@@ -27,6 +27,10 @@ export default class Trends extends Component {
     };
 
     getTrends = (region)=>{
+        if(region===null || region.trim()===''){
+            this.setState({region:'', trends:[], error:false, loading:false});
+            return;
+        }
         let url = 'https://support-hashtag.herokuapp.com/trends?region='+region;
         this.setState({region, trends:[], error:false, loading:true});
         axios.get(url).then((response)=>{
@@ -64,9 +68,7 @@ export default class Trends extends Component {
 
     componentDidMount(){
         let region = new URLSearchParams(this.props.location.search).get("region");
-        if(region){
-            this.getTrends(region);
-        }
+        this.getTrends(region);
     }
 
     render() {

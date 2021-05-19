@@ -18,7 +18,7 @@ export default class Tweets extends Component {
 
     handleSubmit = (e)=>{
         e.preventDefault();
-        let hashtag = e.target[0].value;
+        let hashtag = e.target[0].value.trim();
         let curTag = new URLSearchParams(this.props.location.search).get("hashtag")
         if(hashtag === curTag){
             this.getTweets(hashtag)
@@ -28,6 +28,10 @@ export default class Tweets extends Component {
     }
 
     getTweets = (hashtag)=>{
+        if(hashtag===null || hashtag.trim()===''){
+            this.setState({tweets:[], hashtag:'', error:'', loading:false});
+            return;
+        }
         let url = 'https://support-hashtag.herokuapp.com/tweets?hashtag='+hashtag;
         this.setState({tweets:[], hashtag, error:'', loading:true});
         axios.get(url).then((response)=>{
@@ -69,9 +73,7 @@ export default class Tweets extends Component {
 
     componentDidMount(){
         let hashtag = new URLSearchParams(this.props.location.search).get("hashtag");
-        if(hashtag){
-            this.getTweets(hashtag);
-        }
+        this.getTweets(hashtag);
     }
 
     render() {

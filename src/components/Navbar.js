@@ -11,10 +11,10 @@ export default function Navbar() {
             <div className="navbar-nav text-center ml-auto" id="navbarColor01">
                 <div className="d-flex flex-row flex-nowrap justify-content-around text-center">
                     <div className="nav-item">
-                        <NavLink className="nav-link mx-3" to="/trends">Trends</NavLink>
+                        <NavLink className="nav-link mx-3" exact to="/trends">Trends</NavLink>
                     </div>
                     <div className="nav-item">
-                        <NavLink className="nav-link mx-3" to="/tweets">Tweets</NavLink>
+                        <NavLink className="nav-link mx-3" exact to="/tweets">Tweets</NavLink>
                     </div>
                 </div>
             </div>
