@@ -13,10 +13,10 @@ export default function Navbar() {
             <div className="collapse navbar-collapse" id="navbarColor01">
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item mx-3">
-                        <NavLink className="nav-link" to="/tweets">Tweets</NavLink>
+                        <NavLink className="nav-link" to="/trends">Trends</NavLink>
                     </li>
                     <li className="nav-item mx-3">
-                        <NavLink className="nav-link" to="/trends">Trends</NavLink>
+                        <NavLink className="nav-link" to="/tweets">Tweets</NavLink>
                     </li>
                 </ul>
             </div>

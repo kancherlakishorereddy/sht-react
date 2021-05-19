@@ -1,24 +1,40 @@
 import React, { Component } from 'react'
-import TweetEmbed from 'react-tweet-embed'
+import TweetEmbed from './TweetEmbed'
 
 export default class TweetDeck extends Component {
     state={
+        script:false,
         hashtag:this.props.hashtag,
         tweets:this.props.tweets,
         total:this.props.tweets.length,
-        cnt:Math.min(this.props.tweets.length, 24)
+        cnt:Math.min(this.props.tweets.length, 24),
     }
     addMore = ()=>{
         let cnt = this.state.cnt;
         cnt += 9;
         this.setState({cnt});
     }
+    
+    componentDidMount () {
+        const script = document.createElement("script");
+        script.setAttribute("id", "widget-js");
+        script.src="https://platform.twitter.com/widgets.js";
+        script.async = true;
+        document.body.appendChild(script);
+        script.onload=()=>{this.setState({script:true})}
+    }
+
+    componentWillUnmount () {
+        let script = document.getElementById("widget-js");
+        document.body.removeChild(script);
+    }
+
     render() {
         let list = this.state.tweets.slice(0, this.state.cnt)
         const deck = list.map((tweet,index)=>{
             return (
                 <div className="mx-auto" key={tweet.id_str+index}>
-                    <TweetEmbed id={tweet.id_str} options={{align:"center"}}/>
+                    <TweetEmbed id={tweet.id_str} status={this.state.script}/>
                 </div>
             )
         })

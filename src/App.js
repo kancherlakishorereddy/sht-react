@@ -12,10 +12,10 @@ function App() {
         <Navbar/>
         <div className="flex-grow-1">
           <Route exact path="/">
-            <Redirect to="/tweets" />
+            <Redirect to="/trends" />
           </Route>
-          <Route path="/tweets" component={Tweets}></Route>
           <Route path="/trends" component={Trends}></Route>
+          <Route path="/tweets" component={Tweets}></Route>
         </div>
         <ScrollTop/>
         <Footer/>

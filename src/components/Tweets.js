@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import TweetDeck from './TweetDeck'
 import axios from 'axios'
+import Spinner from './Spinner'
 
 export default class Tweets extends Component {
     state={
@@ -33,10 +34,14 @@ export default class Tweets extends Component {
             if(response.data.hashtag !== curTag)
                 return;
             if(response.data.hashtag){
-                let tweets = response.data.tweets.map((tweet)=>{
-                    return {id:tweet.id, id_str:tweet.id_str};
-                })
-                this.setState({tweets, hashtag}); 
+                if(response.data.tweets.length>0){
+                    let tweets = response.data.tweets.map((tweet)=>{
+                        return {id:tweet.id, id_str:tweet.id_str};
+                    })
+                    this.setState({tweets, hashtag});
+                }else{
+                    this.setState({error:'No Tweets Found. Try something else.'});
+                }
             }else if(response.data.msg){
                 this.setState({error:'Error encountered, try again in few minutes or try for another HashTag'})
             }
@@ -48,7 +53,7 @@ export default class Tweets extends Component {
 
     getAction = ()=>{
         if(this.state.loading)
-            return <div className="spinner-border text-primary" role="status"></div>
+            return <Spinner/>
         else
             return <button type="submit" className="btn btn-primary w-25">Go</button>
     }
@@ -97,7 +102,7 @@ export default class Tweets extends Component {
                     <TweetDeck tweets={this.state.tweets} hashtag={this.state.hashtag}/>:
                     (
                         this.state.hashtag!==''?
-                        <h4 className="text-center">{this.state.error}</h4>:
+                        (this.state.error!==''?(<div className="mx-auto alert alert-danger" role="alert" style={{width:"fit-content"}}><p className="text-center mb-0 mx-2">{this.state.error}</p></div>):null):
                         null
                     )
                 }

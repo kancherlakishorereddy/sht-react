@@ -7,7 +7,7 @@ export default class Trends extends Component {
     state={
         region:'',
         trends:[],
-        error:'',
+        error:false,
         loading:false
     }
 
@@ -18,12 +18,16 @@ export default class Trends extends Component {
     handleSubmit = (e)=>{
         e.preventDefault();
         let region = e.target[0].value;
-        this.props.history.push("/trends?region="+region);
+        let curReg = new URLSearchParams(this.props.location.search).get("region")
+        if(curReg === region)
+            this.getTrends(region);
+        else
+            this.props.history.push("/trends?region="+region);
     };
 
     getTrends = (region)=>{
         let url = 'https://support-hashtag.herokuapp.com/trends?region='+region;
-        this.setState({region, trends:[], error:'', loading:true});
+        this.setState({region, trends:[], error:false, loading:true});
         axios.get(url).then((response)=>{
             let curReg = new URLSearchParams(this.props.location.search).get("region")
             if(response.data.region.toLowerCase() !== curReg.toLowerCase()){
@@ -33,12 +37,12 @@ export default class Trends extends Component {
                 let trends = response.data.trends.map((trend)=>{
                     return {name: trend.name, vol: trend.tweet_volume};
                 });
-                this.setState({trends, region: response.data.region, error: response.data.msg,loading:false});
+                this.setState({trends, region: response.data.region, error: response.data.msg?true:false,loading:false});
             }else if(response.data.msg){
-                this.setState({error:'Error encountered, check the spelling or try again in few minutes.',loading:false})
+                this.setState({error:true,loading:false})
             }
         }).catch(()=>{
-            this.setState({error: 'Check your network connection and Try again', loading:false});
+            this.setState({error: true, loading:false});
         });
     }
 
@@ -88,7 +92,7 @@ export default class Trends extends Component {
                 {
                     this.state.trends.length ? 
                     <TrendDeck trends={this.state.trends} region={this.state.region}/> :
-                    <h4 className="text-center">{this.state.error}</h4>
+                    (this.state.error ? (<div className="mx-auto alert alert-danger" role="alert" style={{width:"fit-content"}}><p className="text-center mb-0 mx-2">Error Encountered. <br/> Twitter may not be tracking trends in this region. <br/> Please check your Spelling and Internet Connection before trying again.</p></div>):null)
                 }
             </div>
         )
