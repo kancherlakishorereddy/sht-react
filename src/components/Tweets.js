@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import TweetDeck from './TweetDeck'
 import axios from 'axios'
 import Spinner from './Spinner'
+import Helmet from 'react-helmet'
 
 export default class Tweets extends Component {
     state={
@@ -75,6 +76,13 @@ export default class Tweets extends Component {
 
     render() {
         return (
+        <>
+            <Helmet>
+                <title>Tweets | Support HashTag</title>
+                <meta name='description' content={this.state.hashtag!==''?
+                                                        `See what Twitterati's thoughts are on #${this.state.hashtag}`:
+                                                        `See Twitter Trends around the world and Tweets on trending HashTags`}/>
+            </Helmet>
             <div className="container">
                 <div className="col-12 col-md-8 px-0 py-4 mx-auto">
                     <form id="query-form" onSubmit={this.handleSubmit}>
@@ -107,6 +115,7 @@ export default class Tweets extends Component {
                     )
                 }
             </div>
+        </>
         )
     }
 }

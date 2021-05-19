@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import TrendDeck from './TrendDeck'
 import axios from 'axios'
+import Helmet from 'react-helmet'
 
 
 export default class Trends extends Component {
@@ -70,6 +71,13 @@ export default class Trends extends Component {
 
     render() {
         return (
+        <>
+            <Helmet>
+                <title>Trends | Support HashTag</title>
+                <meta name='description' content={this.state.hashtag!==''?
+                                                        `See what's Trending Now in ${this.state.region}`:
+                                                        `See Twitter Trends around the world and Tweets on trending HashTags`}/>
+            </Helmet>
             <div className="container flex-grow-1">
                 <div className="col-12 col-md-8 px-0 py-4 mx-auto">
                     <form id="trend-form" onSubmit={this.handleSubmit}>
@@ -95,6 +103,7 @@ export default class Trends extends Component {
                     (this.state.error ? (<div className="mx-auto alert alert-danger" role="alert" style={{width:"fit-content"}}><p className="text-center mb-0 mx-2">Error Encountered. <br/> Twitter may not be tracking trends in this region. <br/> Please check your Spelling and Internet Connection before trying again.</p></div>):null)
                 }
             </div>
+        </>
         )
     }
 }
