@@ -9,6 +9,7 @@ export default function TweetEmbed({id, status, finishRender}) {
                   conversation: 'all',    // or all
                   cards: 'visible',  // or hidden
                   align: "center", // or left or right
+                  dnt: true,
                 }).then(()=>{finishRender(false)});
         }
     }, [id, status, finishRender]);
