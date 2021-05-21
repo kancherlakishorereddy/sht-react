@@ -80,10 +80,8 @@ export default class Tweets extends Component {
         return (
         <>
             <Helmet>
-                <title>Tweets | Support HashTag</title>
-                <meta name='description' content={this.state.hashtag!==''?
-                                                        `See what Twitterati's thoughts are on #${this.state.hashtag}`:
-                                                        `See Twitter Trends around the world and Tweets on trending HashTags`}/>
+                <title>{this.state.hashtag!==''?`${this.state.hashtag}`:"Trends"} | Support HashTag</title>
+                <meta name='description' content="See Twitter Trends around the world and Tweets on trending HashTags"/>
             </Helmet>
             <div className="container">
                 <div className="col-12 col-md-8 px-0 py-4 mx-auto">

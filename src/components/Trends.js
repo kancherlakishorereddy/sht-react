@@ -75,10 +75,8 @@ export default class Trends extends Component {
         return (
         <>
             <Helmet>
-                <title>Trends | Support HashTag</title>
-                <meta name='description' content={this.state.hashtag!==''?
-                                                        `See what's Trending Now in ${this.state.region}`:
-                                                        `See Twitter Trends around the world and Tweets on trending HashTags`}/>
+                <title>{this.state.region!==''?`Trending in ${this.state.region}`:"Trends"} | Support HashTag</title>
+                <meta name='description' content="See Twitter Trends around the world and Tweets on trending HashTags"/>
             </Helmet>
             <div className="container flex-grow-1">
                 <div className="col-12 col-md-8 px-0 py-4 mx-auto">
