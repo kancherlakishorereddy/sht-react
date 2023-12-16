@@ -31,7 +31,7 @@ export default class Trends extends Component {
             this.setState({region:'', trends:[], error:false, loading:false});
             return;
         }
-        let url = 'https://support-hashtag.herokuapp.com/trends?region='+region;
+        let url = 'https://support-hashtag.onrender.com/trends?region='+region;
         this.setState({region, trends:[], error:false, loading:true});
         axios.get(url).then((response)=>{
             let curReg = new URLSearchParams(this.props.location.search).get("region")

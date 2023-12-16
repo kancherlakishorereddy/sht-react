@@ -32,7 +32,7 @@ export default class Tweets extends Component {
             this.setState({tweets:[], hashtag:'', error:'', loading:false});
             return;
         }
-        let url = 'https://support-hashtag.herokuapp.com/tweets?hashtag='+hashtag;
+        let url = 'https://support-hashtag.onrender.com/tweets?hashtag='+hashtag;
         this.setState({tweets:[], hashtag, error:'', loading:true});
         axios.get(url).then((response)=>{
             let curTag = new URLSearchParams(this.props.location.search).get("hashtag")
@@ -41,7 +41,7 @@ export default class Tweets extends Component {
             if(response.data.hashtag){
                 if(response.data.tweets.length>0){
                     let tweets = response.data.tweets.map((tweet)=>{
-                        return {id:tweet.id, id_str:tweet.id_str};
+                        return {id:tweet.id, tweet_id:tweet.tweet_id};
                     })
                     this.setState({tweets, hashtag});
                 }else{

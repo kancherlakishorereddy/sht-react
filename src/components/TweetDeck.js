@@ -50,8 +50,8 @@ export default class TweetDeck extends Component {
         let list = this.state.tweets.slice(0, this.state.cnt)
         const deck = list.map((tweet,index)=>{
             return (
-                <div className="mx-auto" key={tweet.id_str+index}>
-                    <TweetEmbed id={tweet.id_str} status={this.state.script} finishRender={this.finishRender}/>
+                <div className="mx-auto" key={tweet.tweet_id+index}>
+                    <TweetEmbed id={tweet.tweet_id} status={this.state.script} finishRender={this.finishRender}/>
                 </div>
             )
         })
